@@ -1,0 +1,28 @@
+kind: pipeline
+name: default
+
+- name: docker-php-fpm
+  image: plugins/docker
+  dockerfile: php-fpm/Dockerfile
+  settings:
+    repo: tlemarchand/nextcloud-php-fpm
+    tags: latest
+    username:
+      from_secret: docker_username
+    password:
+      from_secret: docker_password
+    build_args:
+      - NEXTCLOUD_VERSION=16.0.3
+
+- name: docker-nginx
+  image: plugins/docker
+  dockerfile: nginx/Dockerfile
+  settings:
+    repo: tlemarchand/nextcloud-nginx
+    tags: latest
+    username:
+      from_secret: docker_username
+    password:
+      from_secret: docker_password
+    build_args:
+      - NEXTCLOUD_VERSION=16.0.3
