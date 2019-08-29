@@ -2,8 +2,8 @@ FROM nginx:1.17
 
 ARG NEXTCLOUD_VERSION
 
-COPY php-fpm.conf /etc/nginx/conf.d/
-COPY nextcloud.conf /etc/nginx/conf.d/
+COPY nginx/php-fpm.conf /etc/nginx/conf.d/
+COPY nginx/nextcloud.conf /etc/nginx/conf.d/
 
 RUN apt-get update && apt-get install -y curl bzip2 && \
     mkdir /var/www && \

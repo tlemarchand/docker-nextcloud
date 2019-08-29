@@ -83,7 +83,7 @@ RUN curl https://download.nextcloud.com/server/releases/nextcloud-${NEXTCLOUD_VE
     mkdir /var/www/nextcloud/custom_apps && \
     mkdir /var/www/data
 
-COPY config/* /var/www/nextcloud/config/
+COPY php-fpm/config/* /var/www/nextcloud/config/
 
 VOLUME /var/www/data
 VOLUME /var/www/nextcloud/custom_apps
