@@ -4,8 +4,8 @@ name: default
 steps:
 - name: docker-php-fpm
   image: plugins/docker
-  dockerfile: php-fpm/Dockerfile
   settings:
+    dockerfile: php-fpm/Dockerfile
     repo: tlemarchand/nextcloud-php-fpm
     tags: latest
     username:
@@ -17,8 +17,8 @@ steps:
 
 - name: docker-nginx
   image: plugins/docker
-  dockerfile: nginx/Dockerfile
   settings:
+    dockerfile: nginx/Dockerfile
     repo: tlemarchand/nextcloud-nginx
     tags: latest
     username:
