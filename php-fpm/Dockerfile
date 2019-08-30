@@ -81,9 +81,13 @@ RUN curl https://download.nextcloud.com/server/releases/nextcloud-${NEXTCLOUD_VE
     | tar -xjC /var/www/ && \
     rm -rf /var/www/nextcloud/updater && \
     mkdir /var/www/nextcloud/custom_apps && \
-    mkdir /var/www/data
+    mkdir /var/www/data && \
+    mkdir /usr/share/templates/
 
 COPY php-fpm/config/* /var/www/nextcloud/config/
+COPY php-fpm/templates/* /usr/share/templates/
 
 VOLUME /var/www/data
 VOLUME /var/www/nextcloud/custom_apps
+
+CMD envsubst < /usr/share/templates/redis-session.ini.template > /usr/local/etc/php/conf.d/redis-session.ini && exec php-fpm
