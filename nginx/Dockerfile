@@ -19,3 +19,5 @@ RUN apt-get update && apt-get install -y curl bzip2 && \
     chown -R www-data: /var/cache/nginx
 
 USER www-data
+
+EXPOSE 8080
