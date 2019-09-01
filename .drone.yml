@@ -13,7 +13,7 @@ steps:
     password:
       from_secret: docker_password
     build_args:
-      - NEXTCLOUD_VERSION=16.0.3
+      - NEXTCLOUD_VERSION=16.0.4
 
 - name: docker-nginx
   image: plugins/docker
@@ -26,4 +26,4 @@ steps:
     password:
       from_secret: docker_password
     build_args:
-      - NEXTCLOUD_VERSION=16.0.3
+      - NEXTCLOUD_VERSION=16.0.4
