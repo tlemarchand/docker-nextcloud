@@ -85,8 +85,7 @@ RUN curl https://download.nextcloud.com/server/releases/nextcloud-${NEXTCLOUD_VE
     mkdir /var/www/nextcloud/custom_apps && \
     mkdir /var/www/data && \
     mkdir /usr/share/templates/ && \
-    touch /var/www/nextcloud/config/config.php && \
-    chown www-data /var/www/nextcloud/config/config.php && \
+    ln -s /var/www/data/config.php /var/www/nextcloud/config/config.php && \
     chown www-data /var/www/nextcloud/config/CAN_INSTALL
 
 COPY php-fpm/config/* /var/www/nextcloud/config/
