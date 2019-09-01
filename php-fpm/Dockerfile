@@ -21,6 +21,7 @@ RUN set -ex; \
         libmagickwand-dev \
         libzip-dev \
         libwebp-dev \
+        libgmp-dev \
     ; \
     \
     debMultiarch="$(dpkg-architecture --query DEB_BUILD_MULTIARCH)"; \
@@ -35,6 +36,7 @@ RUN set -ex; \
         pcntl \
         pdo_mysql \
         zip \
+        gmp \
     ; \
     \
 # pecl will claim success even if one install fails, so we need to perform each install separately
@@ -84,7 +86,8 @@ RUN curl https://download.nextcloud.com/server/releases/nextcloud-${NEXTCLOUD_VE
     mkdir /var/www/data && \
     mkdir /usr/share/templates/ && \
     touch /var/www/nextcloud/config/config.php && \
-    chown www-data /var/www/nextcloud/config/config.php
+    chown www-data /var/www/nextcloud/config/config.php && \
+    chown www-data /var/www/nextcloud/config/CAN_INSTALL
 
 COPY php-fpm/config/* /var/www/nextcloud/config/
 COPY php-fpm/php-config/* /usr/local/etc/php/conf.d/
