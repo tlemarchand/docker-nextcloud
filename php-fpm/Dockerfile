@@ -94,3 +94,5 @@ COPY php-fpm/php-config/* /usr/local/etc/php/conf.d/
 
 VOLUME /var/www/data
 VOLUME /var/www/nextcloud/custom_apps
+
+CMD php /var/www/nextcloud/occ upgrade && exec php-fpm
