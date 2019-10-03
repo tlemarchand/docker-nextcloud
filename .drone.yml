@@ -1,29 +1,38 @@
+global_variables:
+  nextcloud_tag: &nextcloud_tag 17.0.0
+  nextcloud_version: &nextcloud_version NEXTCLOUD_VERSION=17.0.0
+
 kind: pipeline
 name: default
 
 steps:
+- name: tag
+  image: debian:10
+  environment:
+    nextcloud_tag: *nextcloud_tag
+  commands:
+  - echo -n 'latest,$nextcloud_tag,$nextcloud_tag-$DRONE_BUILD_NUMBER' > .tags
+
 - name: docker-php-fpm
   image: plugins/docker
   settings:
     dockerfile: php-fpm/Dockerfile
     repo: tlemarchand/nextcloud-php-fpm
-    tags: latest
     username:
       from_secret: docker_username
     password:
       from_secret: docker_password
     build_args:
-      - NEXTCLOUD_VERSION=16.0.4
+      - *nextcloud_version
 
 - name: docker-nginx
   image: plugins/docker
   settings:
     dockerfile: nginx/Dockerfile
     repo: tlemarchand/nextcloud-nginx
-    tags: latest
     username:
       from_secret: docker_username
     password:
       from_secret: docker_password
     build_args:
-      - NEXTCLOUD_VERSION=16.0.4
+      - *nextcloud_version
