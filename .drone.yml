@@ -11,7 +11,7 @@ steps:
   environment:
     NEXTCLOUD_TAG: *nextcloud_tag
   commands:
-  - echo -n 'latest,$NEXTCLOUD_TAG,$NEXTCLOUD_TAG-$DRONE_BUILD_NUMBER' > .tags
+  - echo -n 'latest,$${NEXTCLOUD_TAG},$${NEXTCLOUD_TAG}-$DRONE_BUILD_NUMBER' > .tags
 
 - name: docker-php-fpm
   image: plugins/docker
