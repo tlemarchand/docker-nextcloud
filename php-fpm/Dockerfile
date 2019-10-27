@@ -77,6 +77,7 @@ RUN { \
     echo 'apc.enable_cli=1' >> /usr/local/etc/php/conf.d/docker-php-ext-apcu.ini; \
     echo 'memory_limit=512M' > /usr/local/etc/php/conf.d/memory-limit.ini; \
     sed -i 's/9000/\/run\/php-fpm\/www.sock/' /usr/local/etc/php-fpm.d/zz-docker.conf; \
+    echo "pm.max_children = 20" >> /usr/local/etc/php-fpm.d/zz-docker.conf; \
     mkdir /run/php-fpm
 
 RUN curl https://download.nextcloud.com/server/releases/nextcloud-${NEXTCLOUD_VERSION}.tar.bz2 \
