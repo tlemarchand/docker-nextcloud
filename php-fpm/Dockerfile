@@ -1,4 +1,4 @@
-FROM php:7.3-fpm-buster
+FROM php:7.4-fpm-buster
 
 ARG NEXTCLOUD_VERSION
 
@@ -40,8 +40,8 @@ RUN set -ex; \
     ; \
     \
 # pecl will claim success even if one install fails, so we need to perform each install separately
-    pecl install APCu-5.1.17; \
-    pecl install memcached-3.1.3; \
+    pecl install APCu-5.1.18; \
+    pecl install memcached-3.1.5; \
     pecl install redis-4.3.0; \
     pecl install imagick-3.4.4; \
     \
