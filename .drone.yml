@@ -1,6 +1,6 @@
 global_variables:
-  nextcloud_tag: &nextcloud_tag 18.0.3
-  nextcloud_version: &nextcloud_version NEXTCLOUD_VERSION=18.0.3
+  nextcloud_tag: &nextcloud_tag 18.0.4
+  nextcloud_version: &nextcloud_version NEXTCLOUD_VERSION=18.0.4
 
 kind: pipeline
 name: default
