@@ -13,29 +13,29 @@ steps:
   commands:
   - echo -n latest,$${NEXTCLOUD_TAG},$${NEXTCLOUD_TAG}-$DRONE_BUILD_NUMBER > .tags
 
-- name: docker-php-fpm
-  image: plugins/docker
-  settings:
-    dockerfile: php-fpm/Dockerfile
-    repo: tlemarchand/nextcloud-php-fpm
-    username:
-      from_secret: docker_username
-    password:
-      from_secret: docker_password
-    build_args:
-      - *nextcloud_version
+# - name: docker-php-fpm
+#   image: plugins/docker
+#   settings:
+#     dockerfile: php-fpm/Dockerfile
+#     repo: tlemarchand/nextcloud-php-fpm
+#     username:
+#       from_secret: docker_username
+#     password:
+#       from_secret: docker_password
+#     build_args:
+#       - *nextcloud_version
 
-- name: docker-nginx
-  image: plugins/docker
-  settings:
-    dockerfile: nginx/Dockerfile
-    repo: tlemarchand/nextcloud-nginx
-    username:
-      from_secret: docker_username
-    password:
-      from_secret: docker_password
-    build_args:
-      - *nextcloud_version
+# - name: docker-nginx
+#   image: plugins/docker
+#   settings:
+#     dockerfile: nginx/Dockerfile
+#     repo: tlemarchand/nextcloud-nginx
+#     username:
+#       from_secret: docker_username
+#     password:
+#       from_secret: docker_password
+#     build_args:
+#       - *nextcloud_version
 
 - name: quay-php-fpm
   image: plugins/docker
