@@ -1,4 +1,4 @@
-FROM nginx:1.19
+FROM nginx:1.21
 
 ARG NEXTCLOUD_VERSION
 
