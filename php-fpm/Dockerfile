@@ -1,6 +1,6 @@
 FROM php:8.0-fpm-bullseye
 
-ARG NEXTCLOUD_VERSION
+ARG NEXTCLOUD_VERSION=22.2.5
 
 RUN set -ex; \
     \
