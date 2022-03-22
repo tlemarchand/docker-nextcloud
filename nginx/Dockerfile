@@ -1,6 +1,6 @@
 FROM nginx:1.21
 
-ARG NEXTCLOUD_VERSION=22.2.5
+ARG NEXTCLOUD_VERSION=23.0.3
 
 COPY nginx/config/* /etc/nginx/conf.d/
 
