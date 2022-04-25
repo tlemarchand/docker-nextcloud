@@ -1,6 +1,6 @@
 FROM php:8.0-fpm-bullseye
 
-ARG NEXTCLOUD_VERSION=23.0.3
+COPY version /tmp/version
 
 RUN set -ex; \
     \
@@ -81,7 +81,7 @@ RUN { \
     echo "pm.max_children = 20" >> /usr/local/etc/php-fpm.d/zz-docker.conf; \
     mkdir /run/php-fpm
 
-RUN curl https://download.nextcloud.com/server/releases/nextcloud-${NEXTCLOUD_VERSION}.tar.bz2 \
+RUN curl https://download.nextcloud.com/server/releases/nextcloud-`cat /tmp/version`.tar.bz2 \
     | tar -xjC /var/www/ && \
     rm -rf /var/www/nextcloud/updater && \
     mkdir /var/www/nextcloud/custom_apps && \
