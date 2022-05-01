@@ -5,4 +5,4 @@ git add -A
 git commit -m `cat version`
 git push origin master
 git tag `cat version`
-git push origin `cat version`
+git push origin `cat version` -f
