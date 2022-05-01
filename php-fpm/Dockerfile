@@ -42,7 +42,7 @@ RUN set -ex; \
     \
 # pecl will claim success even if one install fails, so we need to perform each install separately
     pecl install APCu-5.1.21; \
-    pecl install memcached-3.1.5; \
+    pecl install memcached-3.2.0; \
     pecl install redis-5.3.7; \
     pecl install imagick-3.7.0; \
     \
@@ -69,11 +69,11 @@ RUN set -ex; \
 
 RUN { \
         echo 'opcache.enable=1'; \
-        echo 'opcache.interned_strings_buffer=8'; \
+        echo 'opcache.interned_strings_buffer=16'; \
         echo 'opcache.max_accelerated_files=10000'; \
         echo 'opcache.memory_consumption=128'; \
         echo 'opcache.save_comments=1'; \
-        echo 'opcache.revalidate_freq=1'; \
+        echo 'opcache.revalidate_freq=60'; \
     } > /usr/local/etc/php/conf.d/opcache-recommended.ini; \
     echo 'apc.enable_cli=1' >> /usr/local/etc/php/conf.d/docker-php-ext-apcu.ini; \
     echo 'memory_limit=512M' > /usr/local/etc/php/conf.d/memory-limit.ini; \
