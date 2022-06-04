@@ -98,4 +98,4 @@ VOLUME /var/www/nextcloud/custom_apps
 
 USER www-data
 
-CMD php /var/www/nextcloud/occ upgrade && exec php-fpm
+CMD php /var/www/nextcloud/occ upgrade -vv -n && exec php-fpm
