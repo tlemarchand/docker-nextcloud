@@ -1,4 +1,4 @@
-FROM php:8.0-fpm-bullseye
+FROM php:8.1-fpm-bullseye
 
 COPY version /tmp/version
 
@@ -17,6 +17,7 @@ RUN set -ex; \
         libmcrypt-dev \
         libmemcached-dev \
         libpng-dev \
+        libpq-dev \
         libxml2-dev \
         libmagickwand-dev \
         libzip-dev \
@@ -52,6 +53,7 @@ RUN set -ex; \
         redis \
         imagick \
     ; \
+    rm -r /tmp/pear; \
     \
 # reset apt-mark's "manual" list so that "purge --auto-remove" will remove all build dependencies
     apt-mark auto '.*' > /dev/null; \
@@ -87,15 +89,12 @@ RUN curl https://download.nextcloud.com/server/releases/nextcloud-`cat /tmp/vers
     mkdir /var/www/nextcloud/custom_apps && \
     mkdir /var/www/data && \
     mkdir /usr/share/templates/ && \
-    ln -s /var/www/nextcloud/config/rw/config.php /var/www/nextcloud/config/config.php && \
-    chown www-data /var/www/nextcloud/config/CAN_INSTALL
 
 COPY php-fpm/config/* /var/www/nextcloud/config/
 COPY php-fpm/php-config/* /usr/local/etc/php/conf.d/
 
 VOLUME /var/www/data
 VOLUME /var/www/nextcloud/custom_apps
-VOLUME /var/www/nextcloud/config/rw
 
 USER www-data
 
