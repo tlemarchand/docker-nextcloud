@@ -41,7 +41,7 @@ RUN set -ex; \
     ; \
     \
 # pecl will claim success even if one install fails, so we need to perform each install separately
-    pecl install APCu-5.1.21; \
+    pecl install APCu-5.1.22; \
     pecl install memcached-3.2.0; \
     pecl install redis-5.3.7; \
     pecl install imagick-3.7.0; \
@@ -87,7 +87,7 @@ RUN curl https://download.nextcloud.com/server/releases/nextcloud-`cat /tmp/vers
     mkdir /var/www/nextcloud/custom_apps && \
     mkdir /var/www/data && \
     mkdir /usr/share/templates/ && \
-    ln -s /var/www/data/config.php /var/www/nextcloud/config/config.php && \
+    ln -s /var/www/nextcloud/config/rw/config.php /var/www/nextcloud/config/config.php && \
     chown www-data /var/www/nextcloud/config/CAN_INSTALL
 
 COPY php-fpm/config/* /var/www/nextcloud/config/
@@ -95,6 +95,7 @@ COPY php-fpm/php-config/* /usr/local/etc/php/conf.d/
 
 VOLUME /var/www/data
 VOLUME /var/www/nextcloud/custom_apps
+VOLUME /var/www/nextcloud/config/rw
 
 USER www-data
 
