@@ -88,7 +88,7 @@ RUN curl https://download.nextcloud.com/server/releases/nextcloud-`cat /tmp/vers
     rm -rf /var/www/nextcloud/updater && \
     mkdir /var/www/nextcloud/custom_apps && \
     mkdir /var/www/data && \
-    mkdir /usr/share/templates/ && \
+    mkdir /usr/share/templates/
 
 COPY php-fpm/config/* /var/www/nextcloud/config/
 COPY php-fpm/php-config/* /usr/local/etc/php/conf.d/
