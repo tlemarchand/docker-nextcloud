@@ -1,6 +1,6 @@
 #!/bin/bash
 git checkout master
-echo -n '25.0.1' > version
+echo -n '25.0.2' > version
 git add -A
 git commit -m `cat version`
 git push origin master
