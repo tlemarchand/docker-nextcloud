@@ -37,6 +37,7 @@ RUN set -ex; \
         opcache \
         pcntl \
         pdo_mysql \
+        sysvsem \ 
         zip \
         gmp \
     ; \
