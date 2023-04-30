@@ -8,6 +8,7 @@ RUN set -ex; \
     \
     apt-get update; \
     apt-get install -y --no-install-recommends \
+        nano \
         libcurl4-openssl-dev \
         libevent-dev \
         libfreetype6-dev \
