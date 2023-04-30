@@ -8,7 +8,6 @@ RUN set -ex; \
     \
     apt-get update; \
     apt-get install -y --no-install-recommends \
-        nano \
         libcurl4-openssl-dev \
         libevent-dev \
         libfreetype6-dev \
@@ -69,6 +68,7 @@ RUN set -ex; \
         | xargs -rt apt-mark manual; \
     \
     apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false; \
+    apt-get install -y --no-install-recommends nano
     rm -rf /var/lib/apt/lists/*
 
 RUN { \
