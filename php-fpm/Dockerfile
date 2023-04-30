@@ -68,7 +68,7 @@ RUN set -ex; \
         | xargs -rt apt-mark manual; \
     \
     apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false; \
-    apt-get install -y --no-install-recommends nano
+    apt-get install -y --no-install-recommends nano && \
     rm -rf /var/lib/apt/lists/*
 
 RUN { \
