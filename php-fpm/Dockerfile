@@ -11,18 +11,18 @@ RUN set -ex; \
         libcurl4-openssl-dev \
         libevent-dev \
         libfreetype6-dev \
+        libgmp-dev \
         libicu-dev \
         libjpeg-dev \
         libldap2-dev \
+        libmagickwand-dev \
         libmcrypt-dev \
         libmemcached-dev \
         libpng-dev \
         libpq-dev \
-        libxml2-dev \
-        libmagickwand-dev \
-        libzip-dev \
         libwebp-dev \
-        libgmp-dev \
+        libxml2-dev \
+        libzip-dev \
     ; \
     \
     debMultiarch="$(dpkg-architecture --query DEB_BUILD_MULTIARCH)"; \
@@ -32,21 +32,22 @@ RUN set -ex; \
         bcmath \
         exif \
         gd \
+        gmp \
         intl \
         ldap \
         opcache \
         pcntl \
         pdo_mysql \
-        sysvsem \ 
+        pdo_pgsql \
+        sysvsem \
         zip \
-        gmp \
     ; \
     \
 # pecl will claim success even if one install fails, so we need to perform each install separately
     pecl install APCu-5.1.22; \
-    pecl install memcached-3.2.0; \
-    pecl install redis-5.3.7; \
     pecl install imagick-3.7.0; \
+    pecl install memcached-3.2.0; \
+    pecl install redis-6.0.1; \
     \
     docker-php-ext-enable \
         apcu \
@@ -73,11 +74,13 @@ RUN set -ex; \
 
 RUN { \
         echo 'opcache.enable=1'; \
-        echo 'opcache.interned_strings_buffer=16'; \
+        echo 'opcache.interned_strings_buffer=32'; \
         echo 'opcache.max_accelerated_files=10000'; \
         echo 'opcache.memory_consumption=128'; \
         echo 'opcache.save_comments=1'; \
         echo 'opcache.revalidate_freq=60'; \
+        echo 'opcache.jit=1255'; \
+        echo 'opcache.jit_buffer_size=128M'; \
     } > /usr/local/etc/php/conf.d/opcache-recommended.ini; \
     echo 'apc.enable_cli=1' >> /usr/local/etc/php/conf.d/docker-php-ext-apcu.ini; \
     echo 'memory_limit=512M' > /usr/local/etc/php/conf.d/memory-limit.ini; \
