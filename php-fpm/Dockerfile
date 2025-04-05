@@ -80,7 +80,7 @@ RUN { \
         echo 'opcache.save_comments=1'; \
         echo 'opcache.revalidate_freq=60'; \
         echo 'opcache.jit=1255'; \
-        echo 'opcache.jit_buffer_size=128M'; \
+        echo 'opcache.jit_buffer_size=16M'; \
     } > /usr/local/etc/php/conf.d/opcache-recommended.ini; \
     echo 'apc.enable_cli=1' >> /usr/local/etc/php/conf.d/docker-php-ext-apcu.ini; \
     echo 'memory_limit=512M' > /usr/local/etc/php/conf.d/memory-limit.ini; \
